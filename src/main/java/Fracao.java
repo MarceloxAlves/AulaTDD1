@@ -20,37 +20,33 @@ public class Fracao {
         return (double) this.numerador / this.denomidador;
     }
 
-    public  Fracao soma(Fracao fracao1, Fracao fracao2){
-        int mmc = MyMath.mmc(fracao1.getDenomidador(),fracao2.getDenomidador());
-        return  new Fracao((mmc / fracao1.getDenomidador() * fracao1.getNumerador()) +
-                (mmc / fracao2.getDenomidador() * fracao2.getNumerador()), mmc);
+    public  Fracao soma(Fracao fracao){
+        int mmc = MyMath.mmc(this.getDenomidador(),fracao.getDenomidador());
+        return  new Fracao((mmc / this.getDenomidador() * this.getNumerador()) +
+                (mmc / fracao.getDenomidador() * fracao.getNumerador()), mmc);
     }
 
-    public  Fracao mult(Fracao fracao1, Fracao fracao2){
-        return  new Fracao(fracao1.getNumerador() * fracao2.getNumerador(),fracao1.getDenomidador() * fracao2.getDenomidador());
+    public  Fracao mult(Fracao fracao){
+        return  new Fracao(this.getNumerador() * fracao.getNumerador(),this.getDenomidador() * fracao.getDenomidador());
     }
 
-    public  Fracao div(Fracao fracao1, Fracao fracao2){
-        return  new Fracao(fracao1.getNumerador() * fracao2.getDenomidador(),fracao1.getDenomidador() * fracao2.getNumerador());
+    public  Fracao div(Fracao fracao){
+        return  new Fracao(this.getNumerador() * fracao.getDenomidador(),this.getDenomidador() * fracao.getNumerador());
     }
 
-    public  Fracao diff(Fracao fracao1, Fracao fracao2){
-        int mmc = MyMath.mmc(fracao1.getDenomidador(),fracao2.getDenomidador());
-        return  new Fracao((mmc / fracao1.getDenomidador() * fracao1.getNumerador()) -
-                        (mmc / fracao2.getDenomidador() * fracao2.getNumerador()),mmc);
+    public  Fracao diff(Fracao fracao){
+        int mmc = MyMath.mmc(this.getDenomidador(),fracao.getDenomidador());
+        return  new Fracao((mmc / this.getDenomidador() * this.getNumerador()) -
+                        (mmc / fracao.getDenomidador() * fracao.getNumerador()),mmc);
     }
 
-    public int maior(Fracao fracao){
-        return fracao.getNumerador() > fracao.getDenomidador() ?  fracao.getNumerador() : fracao.getDenomidador();
-    }
-
-    public Fracao reduzida(Fracao fracao){
+    public Fracao reduzida(){
         int num = 0;
         int den = 0;
-        for (int i = 2; i <= maior(fracao); i++) {
-            if (fracao.getNumerador() % i == 0 && fracao.getDenomidador() % i == 0) {
-                num = fracao.getNumerador() / i;
-                den = fracao.getDenomidador() / i;
+        for (int i = 2; i <= MyMath.maior(this.numerador, this.denomidador); i++) {
+            if (this.getNumerador() % i == 0 && this.getDenomidador() % i == 0) {
+                num = this.getNumerador() / i;
+                den = this.getDenomidador() / i;
             }
         }
         return new Fracao(num,den);
