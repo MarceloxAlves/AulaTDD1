@@ -25,24 +25,27 @@ public class TestFracao {
 
     @Test
     public void test_valor_soma(){
-        assertEquals("5/6", fracao.soma(new Fracao(1,2), new Fracao(1,3));
+        assertEquals("5/6", fracao.soma(new Fracao(1,2), new Fracao(1,3)).toString());
     }
 
     @Test
     public void test_valor_diff(){
-        assertEquals(0.5, fracao.valorReal(), 0.1);
+
+        assertEquals("1/6", fracao.diff(new Fracao(1,2), new Fracao(1,3)).toString());
     }
 
 
     @Test
     public void test_valor_div(){
-        assertEquals(0.5, fracao.valorReal(), 0.1);
+
+        assertEquals("3/2", fracao.div(new Fracao(1,2), new Fracao(1,3)).toString());
     }
 
 
     @Test
     public void test_valor_mult(){
-        assertEquals(0.5, fracao.valorReal(), 0.1);
+
+        assertEquals("1/6", fracao.mult(new Fracao(1,2), new Fracao(1,3)).toString());
     }
 
 }
