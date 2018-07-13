@@ -21,7 +21,9 @@ public class Fracao {
     }
 
     public  Fracao soma(Fracao fracao1, Fracao fracao2){
-        return  new Fracao(1,2);
+        int mmc = MyMath.mmc(fracao1.getDenomidador(),fracao2.getDenomidador());
+        return  new Fracao((mmc / fracao1.getDenomidador() * fracao1.getNumerador()) +
+                (mmc / fracao2.getDenomidador() * fracao2.getNumerador()), mmc);
     }
 
     public  Fracao mult(Fracao fracao1, Fracao fracao2){
@@ -33,22 +35,18 @@ public class Fracao {
     }
 
     public  Fracao diff(Fracao fracao1, Fracao fracao2){
-        int mmc = mmc(fracao1.getDenomidador(),fracao2.getDenomidador());
-
-        return  new Fracao((mmc / fracao1.getDenomidador() * fracao1.getNumerador()) +
+        int mmc = MyMath.mmc(fracao1.getDenomidador(),fracao2.getDenomidador());
+        return  new Fracao((mmc / fracao1.getDenomidador() * fracao1.getNumerador()) -
                         (mmc / fracao2.getDenomidador() * fracao2.getNumerador()),mmc);
     }
 
     public int maior(Fracao fracao){
-        if(fracao.getNumerador() > fracao.getDenomidador())
-            return fracao.getNumerador();
-        else
-            return fracao.getDenomidador();
+        return fracao.getNumerador() > fracao.getDenomidador() ?  fracao.getNumerador() : fracao.getDenomidador();
     }
 
     public Fracao reduzida(Fracao fracao){
-        int num;
-        int den;
+        int num = 0;
+        int den = 0;
         for (int i = 2; i <= maior(fracao); i++) {
             if (fracao.getNumerador() % i == 0 && fracao.getDenomidador() % i == 0) {
                 num = fracao.getNumerador() / i;
@@ -60,21 +58,6 @@ public class Fracao {
     public boolean aparente(){
         return (this.numerador > this.denomidador && this.numerador % this.denomidador == 0);
     }
-
-    public int mmc(int num1, int num2) {
-
-        int mmc;
-
-        for (int i = 2; i <= num2; i++) {
-            int aux = num1 * i;
-            if ((aux % num2) == 0) {
-                mmc = aux;
-                i = num2 + 1;
-            }
-        }
-        return mmc;
-    }
-
 
     public int getNumerador() {
         return numerador;
